@@ -7,9 +7,12 @@ import { Course } from "./course";
 export class CourseService{
     //TER NA CLASSE DE VERVIÇOS APENAS VARIAVEIS ESTATICAS QUE NÃO TERÃO SEU VALOR ALTERADO / O ANGULAR CRIA UMA UNICA INSTACIA DE UM OBJETO QUE PODE SER UTLIZADO EM OUTROS COMPONENTER
 
-
     retrieveAll(): Course[]{
-        return COURSES
+        return COURSES;
+    }
+
+    retrieveById(id: number): Course | undefined{
+        return COURSES.find((courseIterator: Course) => courseIterator.id === id);
     }
 }
 

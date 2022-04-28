@@ -1,0 +1,32 @@
+<h2>Course List</h2>
+
+<hr>
+
+<form #courseform="ngForm">
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label ">Name</label>
+        <div class="col-sm-10">
+            <!-- ngClass classes dinamicas -->
+            <input [(ngModel)]="course!.name!" required="true" name="name" #courseName="ngModel" [ngClass]="{'is-invalid': courseName.invalid}" class="form-control">
+            <div class="invalid-feedback">
+            <span>Course name is required</span>
+            </div>
+            <!-- {{courseName.value}} -->
+            <!-- {{courseName.invalid}} -->
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label ">Price</label>
+        <div class="col-sm-10">
+            <!-- ngClass classes dinamicas -->
+            <input [(ngModel)]="course!.price" required="true" type="number" name="name" #coursePrice="ngModel" [ngClass]="{'is-invalid': coursePrice.invalid}" class="form-control">
+            <div class="invalid-feedback">
+            <span>Course price is required</span>
+            </div>
+            <!-- {{courseName.value}} -->
+            <!-- {{courseName.invalid}} -->
+        </div>
+    </div>
+
+</form>
