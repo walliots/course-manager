@@ -2,7 +2,7 @@
 
 <hr>
 
-<form #courseform="ngForm">
+<form #courseForm="ngForm">
     <div class="form-group row">
         <label class="col-sm-2 col-form-label ">Name</label>
         <div class="col-sm-10">
@@ -15,12 +15,12 @@
             <!-- {{courseName.invalid}} -->
         </div>
     </div>
-
+<br>
     <div class="form-group row">
         <label class="col-sm-2 col-form-label ">Price</label>
         <div class="col-sm-10">
             <!-- ngClass classes dinamicas -->
-            <input [(ngModel)]="course!.price" required="true" type="number" name="name" #coursePrice="ngModel" [ngClass]="{'is-invalid': coursePrice.invalid}" class="form-control">
+            <input [(ngModel)]="course!.price" required="true" type="number" name="price" #coursePrice="ngModel" [ngClass]="{'is-invalid': coursePrice.invalid}" class="form-control">
             <div class="invalid-feedback">
             <span>Course price is required</span>
             </div>
@@ -28,5 +28,35 @@
             <!-- {{courseName.invalid}} -->
         </div>
     </div>
-
+<br>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label ">Rating</label>
+        <div class="col-sm-10">
+            <!-- ngClass classes dinamicas -->
+            <input [(ngModel)]="course!.rating" required="true" type="number" name="rating" #courseRating="ngModel" [ngClass]="{'is-invalid': courseRating.invalid}" class="form-control">
+            <div class="invalid-feedback">
+            <span>Course rating is required</span>
+            </div>
+            <!-- {{courseName.value}} -->
+            <!-- {{courseName.invalid}} -->
+        </div>
+    </div>
+<br>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label ">Description</label>
+        <div class="col-sm-10">
+            <!-- ngClass classes dinamicas -->
+            <input [(ngModel)]="course!.description" required="true" type="text" name="rating" #courseDescription="ngModel" [ngClass]="{'is-invalid': courseDescription.invalid}" class="form-control">
+            <div class="invalid-feedback">
+            <span>Course description is required</span>
+            </div>
+            <!-- {{courseName.value}} -->
+            <!-- {{courseName.invalid}} -->
+        </div>
+    </div>
+    <br>
+    <!-- qd algum campo estiver invalido esse button desativa -->
+    <!-- fazer referencia a variaveis de template ou de component coloca entre [] -->
+<button [disabled]="courseForm.invalid" (click)="save()" class="btn btn-primary mr-4">SAVE</button>
+<button [routerLink]="['/courses']" class="btn btn-secondary">BACK</button>
 </form>
