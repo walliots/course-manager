@@ -1,18 +1,38 @@
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
 import { Course } from "./course";
 
 @Injectable({
     providedIn: 'root'
 })
 export class CourseService{
-    //TER NA CLASSE DE VERVIÇOS APENAS VARIAVEIS ESTATICAS QUE NÃO TERÃO SEU VALOR ALTERADO / O ANGULAR CRIA UMA UNICA INSTACIA DE UM OBJETO QUE PODE SER UTLIZADO EM OUTROS COMPONENTER
 
-    retrieveAll(): Course[]{
-        return COURSES;
+    private courseUrl: string = 'http://localhost:3100/api/courses'
+    //injeçao de dependencia do http
+    constructor(private httpClient: HttpClient){
+
     }
 
-    retrieveById(id: number): Course | undefined{
-        return COURSES.find((courseIterator: Course) => courseIterator.id === id);
+    //TER NA CLASSE DE SERVIÇOS APENAS VARIAVEIS ESTATICAS QUE NÃO TERÃO SEU VALOR ALTERADO / O ANGULAR CRIA UMA UNICA INSTACIA DE UM OBJETO QUE PODE SER UTLIZADO EM OUTROS COMPONENTER
+
+    // isso aqui era um metodo get
+    // retrieveAll(): Course[]{
+    //     return COURSES;
+    // }
+
+    retrieveAll(): Observable<Course[]>{
+        return this.httpClient.get<Course[]>(this.courseUrl);
+    }
+
+    retrieveById(id: number): Observable<Course>{
+        return this.httpClient.get<Course>(`${this.courseUrl}/${id}`);
+    }
+    save(course: Course): void{
+        if(course.id){
+            const index = COURSES.findIndex((courseIterator: Course )=> courseIterator.id === course.id);
+            COURSES[index] = course;
+        }
     }
 }
 
