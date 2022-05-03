@@ -10,7 +10,7 @@ export class CourseListComponent implements OnInit{
     filteredCourses: Course[] = [];
    
     _courses: Course[] = [];
-    //variavek escopo local
+    //variaveL escopo local
     _filterBy: string = '';
 
     //aqui onde ocorre a injeção de dependencia
@@ -31,6 +31,16 @@ export class CourseListComponent implements OnInit{
             },
             error: err => console.log('error', err)
         });
+    }
+
+    deletedById(courseId: number): void{
+        this.courseService.deleteById(courseId).subscribe({
+            next: () => {
+                console.log('Deleted with sucess')
+                this.retrieveAll();
+            },
+            error: err => console.log('Error', err)
+        })
     }
 
     set filter(value: string){
